@@ -1,5 +1,6 @@
 import { IsString } from 'class-validator';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from '../auth/user.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Post {
@@ -13,4 +14,7 @@ export class Post {
   @Column()
   @IsString()
   text: string;
+
+  @ManyToOne(() => User, (user) => user.posts)
+  user: User;
 }

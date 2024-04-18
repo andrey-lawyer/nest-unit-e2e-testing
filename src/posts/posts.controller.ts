@@ -1,15 +1,28 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+
 import { PostsService } from './posts.service';
 import { PostCreateDto } from './dto/postCreate.dto';
 import { Post as PostEntity } from './post.entity';
+import { User } from 'src/auth/user.entity';
 
 @Controller('posts')
 export class PostsController {
   constructor(private readonly postService: PostsService) {}
 
   @Post()
-  async createPost(@Body() postCreateDto: PostCreateDto): Promise<PostEntity> {
-    const data = await this.postService.create(postCreateDto);
+  @UseGuards(AuthGuard())
+  async createPost(
+    @Body() postCreateDto: PostCreateDto,
+    @Req() req,
+  ): Promise<PostEntity> {
+    const { id, name, email }: Pick<User, 'name' | 'email' | 'id'> = req.user;
+
+    const data = await this.postService.create(postCreateDto, {
+      id,
+      name,
+      email,
+    });
     return data;
   }
 
