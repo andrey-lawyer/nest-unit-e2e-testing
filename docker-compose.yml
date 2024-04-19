@@ -1,41 +1,51 @@
 version: '3.9'
 services:
-  mysql:
-    image: mysql:latest
-    restart: always
-    environment:
-      MYSQL_DATABASE: testdb
-      MYSQL_USER: testuser
-      MYSQL_PASSWORD: testpass
-      MYSQL_ROOT_PASSWORD: rootpass
-    ports:
-      - '3306:3306'
+  # mysql:
+  #     image: mysql:latest
+  #     restart: always
+  #     environment:
+  #       MYSQL_DATABASE: testdb
+  #       MYSQL_USER: testuser
+  #       MYSQL_PASSWORD: testpass
+  #       MYSQL_ROOT_PASSWORD: rootpass
+  #     ports:
+  #       - '3306:3306'
 
-  postgres:
+  # postgres:
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     - POSTGRES_PASSWORD=postgres
+  #   container_name: postgres
+  #   volumes:
+  #     - ./pgdata:/var/lib/postgresql/data
+  #   ports:
+  #     - '5433:5432'
+
+  postgres_test:
     image: postgres
     restart: always
     environment:
       - POSTGRES_PASSWORD=postgres
-    container_name: postgres
+    container_name: postgres_test
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - ./pgdata_test:/var/lib/postgresql/data
     ports:
-      - '5433:5432'
+      - '5434:5432'
+# pgadmin:
+#   image: dpage/pgadmin4
+#   restart: always
+#   container_name: nest-pgadmin4
+#   environment:
+#     - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+#     - PGADMIN_DEFAULT_PASSWORD=pgadmin4
+#   ports:
+#     - 5050:80
+#   depends_on:
+#     - postgres
 
-  pgadmin:
-    image: dpage/pgadmin4
-    restart: always
-    container_name: nest-pgadmin4
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
-      - PGADMIN_DEFAULT_PASSWORD=pgadmin4
-    ports:
-      - 5050:80
-    depends_on:
-      - postgres
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
+# adminer:
+#   image: adminer
+#   restart: always
+#   ports:
+#     - 8080:8080

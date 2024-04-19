@@ -65,4 +65,10 @@ export class AuthService {
 
     return { token };
   }
+
+  async getAll(): Promise<Pick<User, 'name' | 'email'>[]> {
+    const users = await this.userRepository.find();
+
+    return users;
+  }
 }

@@ -5,6 +5,7 @@ import { PostsModule } from './posts/posts.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
@@ -25,17 +26,7 @@ import { ConfigModule } from '@nestjs/config';
       autoLoadEntities: true,
     }),
     // postgres
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5433,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'postgres',
-      entities: [],
-      synchronize: true,
-      autoLoadEntities: true,
-    }),
+    DatabaseModule,
     // posts will be saved in postgres
     PostsModule,
     AuthModule,
