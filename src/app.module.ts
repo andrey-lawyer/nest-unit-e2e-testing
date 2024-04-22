@@ -27,7 +27,7 @@ import { DatabaseModule } from './database/database.module';
     }),
     // postgres
     DatabaseModule,
-    // posts will be saved in postgres
+    // posts and users will be saved in postgres
     PostsModule,
     AuthModule,
   ],
