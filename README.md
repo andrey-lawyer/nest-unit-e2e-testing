@@ -4,6 +4,7 @@
 - [Features](#features)
 - [Running](#running)
 - [Schema](#schema)
+- [Testing](#testing)
 
 ## Introduction
 
@@ -48,3 +49,19 @@ npm run start:dev
 ## Schema
 
 The database schema includes tables for User and Post. Relationships between these tables allow you to organise posts between different users.
+
+## Testing
+
+The project includes two test scripts:
+
+1. **Unit Tests:** Execute Jest to run unit tests. Run the command npm run test to run these tests.
+
+```bash
+npm run test
+```
+
+2. **End-to-End (E2E) Tests:** These tests are specifically for end-to-end testing and are configured to run with Jest using the environment variable NODE_ENV=test. Execute the command npm run test:e2e to run these tests with the Jest configuration provided in ./test/jest-e2e.json.
+
+```bash
+npm run test:e2e
+```
