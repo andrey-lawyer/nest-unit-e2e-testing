@@ -37,7 +37,7 @@ npm install
 3. **Start Docker Containers:** If you're using Docker, run docker-compose up to start containers with databases and other services.
 
 ```bash
-run docker-compose up -d
+docker-compose up -d
 ```
 
 4. **Running**
